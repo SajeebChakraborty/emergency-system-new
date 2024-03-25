@@ -10,20 +10,20 @@ export async function middleware(request: NextRequest) {
     const pathName = request.nextUrl.pathname;
     const is_admin = pathName.substring(0, 7) === '/admin/';
     if (is_admin) {
-        const key = await request.cookies.get('authToken');
-        if (key == undefined) {
-            return NextResponse.redirect(new URL('/login', request.nextUrl))
-        } else {
-            try {
-                let info = await jose.jwtVerify(key.value, srcky);
-                let userType = info ? info.payload.user_type : "";
-                if (userType != 'admin') {
-                    //return NextResponse.redirect(new URL('/login', request.nextUrl))
-                }
-            }catch (error){
-                return NextResponse.redirect(new URL('/login', request.nextUrl)).clone
-            }
-        }
+        // const key = await request.cookies.get('authToken');
+        // if (key == undefined) {
+        //     return NextResponse.redirect(new URL('/login', request.nextUrl))
+        // } else {
+        //     try {
+        //         let info = await jose.jwtVerify(key.value, srcky);
+        //         let userType = info ? info.payload.user_type : "";
+        //         if (userType != 'admin') {
+        //             //return NextResponse.redirect(new URL('/login', request.nextUrl))
+        //         }
+        //     }catch (error){
+        //         return NextResponse.redirect(new URL('/login', request.nextUrl)).clone
+        //     }
+        // }
     } else {
         if (!bearerToken) {
             return new NextResponse(JSON.stringify({error: "Bearer Token Not Defined"}))
