@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mission Created</title>
+        <style>
+            .email-body {
+                background: #fff;
+            }
+            .email-container {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .header {
+                background: #e74c3c;
+                padding: 50px;
+            }
+            .header {
+                text-align: center;
+                font-family: verdana;
+            }
+            .header .main {
+                font-size: 2em;
+                color: #fff;
+                font-weight: bold;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                margin: 0;
+            }
+            .header .sub {
+                padding: 20px 0 0 0;
+                font-size: 1em;
+                color: #efefef;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            .footer {
+                padding: 20px;
+                text-align: center;
+                background: #7f8c8d;
+                color: #c8cfcf;
+            }
+            .footer a {
+                color: #c8cfcf;
+                font-size: 17px;
+            }
+
+
+            .form__info-box {
+                border-radius: 5px;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            .form__info-box__title {
+                font-size: 16px;
+                line-height: 1.2;
+                font-family: var(--global-font);
+                font-weight: 600;
+                color: var(--black-color);
+                margin: 0 0 16px;
+            }
+            .form__info-box .form__row:not(:last-child) {
+                margin-bottom: 16px;
+            }
+            .form__row {
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            .flex-ctr-spb {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .form__info-box .form__col {
+                width: 48%;
+                max-width: 48%;
+            }
+            .form__info-box .form__col p {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.2;
+                color: #262939;
+                margin: 0;
+                line-height: 1.7;
+            }
+            .msb-meta {
+                display: flex;
+                gap: 20px;
+                margin-bottom: 25px;
+                flex-wrap: wrap;
+            }
+            .msb-meta .msb-meta__item {
+                width: 48%;
+                max-width: 48%;
+            }
+            .form__info-box__title {
+                font-size: 16px;
+                line-height: 1.2;
+                font-weight: 600;
+                margin: 0 0 16px !important;
+            }
+            .meta-list {
+                display: flex;
+                gap: 7px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .meta-list li {
+                border-radius: 4px;
+                padding: 5px 8px;
+                font-size: 13px;
+                background-color: #1b7c85;
+                color: #ffffff;
+            }
+            .form__info-box__title.has-divider {
+                border-top: 1px solid rgba(0, 0, 0, 0.15);
+                padding-top: 10px;
+            }
+
+            .table-wrap {
+                overflow-x: auto;
+                width: 100%;
+            }
+
+            .mdf-form-head p{
+                line-height: 2;
+            }
+
+            .table-wrap table div,
+            .table-wrap table p{
+                font-size: 13px;
+            }
+
+            .table-wrap table {
+                table-layout: auto;
+                width: 100%;
+                padding-top: 20px;
+                border-collapse: initial!important;
+              }
+
+              table thead tr {
+                color: #2d3748;
+                font-size: 14px;
+                font-weight: 500;
+                text-align: left;
+              }
+
+              table thead tr th {
+                background: #cfe0f0;
+                padding: 0.75rem 1.5rem;
+                vertical-align: middle;
+                font-size: 14px!important;
+              }
+
+              table tbody tr td {
+                background: #cfe0f0;
+              }
+
+              table tbody td {
+                color: #1a202c;
+                text-align: left;
+                vertical-align: middle;
+                font-size: 14px;
+                font-weight: normal;
+                padding: 3px 10px;
+              }
+
+              .table-wrap p,
+              .table-wrap div,
+              .table-wrap th {
+                font-size: 14px!important;
+              }
+
+              .table-wrap td span,
+              table thead tr th span{
+                font-size: 10px!important;
+              }
+
+              .table-wrap td span{
+                display: block;
+              }
+
+              .input-wrap textarea,
+              .input-wrap input{
+                width: 100%;
+                padding: 12px;
+              }
+
+              .table-wrap h3{
+                font-size: 20px;
+                font-weight: 700;
+                margin-top: 40px;
+                margin-bottom: 15px;
+              }
+
+            .mdf-form-wrap h2{
+                font-size: 22px;
+            }
+        </style>
+    </head>
+
+    <body style="font-family: Arial, Helvetica, sans-serif">
+        <div class="email-body">
+            <div class="email-container">
+
+              <div>
+              Hello  <%= mission && mission.leader.name %>, <br>
+
+              This is to inform you that we have received a decision from CLA regarding your MR ID <%= mission && mission.mission_id %>  <br>
+
+              Please see below updated status.<br>
+
+
+                </div>
+
+                <div class="msv-block">
+                    <h2>Identifier Information</h2>
+
+                    <div class="form__info-box">
+                        <h3 class="form__info-box__title">
+                            Mission Focal Point Contact Details
+                        </h3>
+                        <div class="form__row flex-ctr-spb">
+                            <div class="form__col">
+                                <p><b>Name</b></p>
+                                <p><%= mission && mission.leader.name %></p>
+                            </div>
+                            <div class="form__col">
+                                <p><b>ID</b></p>
+                                <p><%= mission && mission.mission_id %></p>
+                            </div>
+                        </div>
+                        <div class="form__row flex-ctr-spb">
+                            <div class="form__col">
+                                <p><b>Phone</b></p>
+                                <p><%= mission && mission.leader.phone_number_one %></p>
+                            </div>
+                            <div class="form__col">
+                                <p><b>Email Address</b></p>
+                                <p><%= mission && mission.leader.user.email %></p>
+                            </div>
+                        </div>
+                        <div class="form__row flex-ctr-spb">
+                            <div class="form__col">
+                                <p><b>Whatsapp</b></p>
+                                <p><%= mission && mission.leader.whatsup_number %></p>
+                            </div>
+                            <div class="form__col">
+                                <p><b>Satellite Phone</b></p>
+                                <p><%= mission && mission.leader.statelite_phone%></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msb-meta-wrap">
+                        <div class="msb-meta">
+                            <div class="msb-meta__item">
+                                <h4 class="form__info-box__title">Agencies</h4>
+                                <ul class="meta-list">
+                                <% if (mission) { %>
+                                    <% mission.agency.forEach((item, index) => { %>
+                                        <li><%= item.agency_id.name %></li>
+                                    <% }); %>
+                                <% } %>
+                                </ul>
+                            </div>
+                            <div class="msb-meta__item">
+                                <h4 class="form__info-box__title">
+                                    Movement Date
+                                </h4>
+                                <p><%= mission.movement_date %></p>
+                            </div>
+                        </div>
+                        <div class="msb-meta">
+                            <div class="msb-meta__item">
+                                <h4 class="form__info-box__title">Purpose</h4>
+                                <p><%= mission.purpose %></p>
+
+                            </div>
+                            <div class="msb-meta__item">
+                                <h4 class="form__info-box__title">Remarks</h4>
+                                <p><%= mission.remarks %></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+<% missionLocation_info.forEach((item,index) => { %>
+       <div class="form__info-box">
+                         <h2>Movement Stops  <%= index+1 %></h2>
+                          <h3 class="form__info-box__title">Departure</h3>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Departure Time</b></p>
+                                  <p><%= item.departure_time %></p>
+                              </div>
+                              <div class="form__col">
+                                  <p><b>Facility Ownership</b></p>
+                                 <p>
+                                   <%= item.departure_umrah_type == 0 ? 'NOT UNRAW' : 'UNRAW' %>
+                                 </p>
+                              </div>
+                          </div>
+
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Premise Type</b></p>
+                                <p>
+                                  <%= item.departure_umrah_type == 1 ? item.departure_premise_type.name : "" %>
+                                </p>
+                              </div>
+                              <div class="form__col">
+                                  <p><b>Installation Name</b></p>
+                                  <p>
+                                    <%= item.departure_umrah_id != null ? item.departure_umrah_id.installation_name : item.departure_installation_name %>
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Building Code</b></p>
+                                  <p><%= item.departure_building_code %></p>
+                              </div>
+                              <div class="form__col">
+                                  <p><b>Longitude</b></p>
+                                  <p><%= item.departure_longitude %></p>
+                              </div>
+                          </div>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p>
+                                      <b>Latitude</b>
+                                  </p>
+                                  <p><%= item.departure_latitude %></p>
+                              </div>
+                          </div>
+                          <h3 class="form__info-box__title has-divider">
+                              Arrival
+                          </h3>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Arrival Time</b></p>
+                                  <p>Mar 20, 2024, 19:24</p>
+                              </div>
+                              <div class="form__col">
+                                  <p><b>Facility Ownership</b></p>
+                                  <p><%= item.arrival_umrah_type == 0 ? 'NOT UNRAW' : 'UNRAW' %></p>
+                              </div>
+                          </div>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Premise Type</b></p>
+                                  <p><%= item.arrival_umrah_type == 1 ? item.arrival_premise_type.name : "" %></p>
+                              </div>
+                              <div class="form__col">
+                                  <p><b>Installation Name</b></p>
+                                    <p><%= item.arrival_umrah_id != null ? item.arrival_umrah_id.installation_name : item.arrival_installation_name %>
+                                                                    </p>
+                              </div>
+                          </div>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Building Code</b></p>
+                                  <p><%= item.arrival_building_code %></p>
+                              </div>
+                              <div class="form__col">
+                                  <p><b>Longitude</b></p>
+                                  <p><%= item.arrival_longitude %></p>
+                              </div>
+                          </div>
+                          <div class="form__row flex-ctr-spb">
+                              <div class="form__col">
+                                  <p><b>Latitude</b></p>
+                                  <p><%= item.arrival_latitude %></p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+<% }); %>
+
+<% try { %>
+    <% if (missionVehicle_info) { %>
+        <% missionVehicle_info.forEach(function(item,index) { %>
+            <div class="form__info-box">
+            <h2>Vehicle <%= index+1 %></h2>
+                <h3 class="form__info-box__title">Driver</h3>
+                <div class="form__row flex-ctr-spb">
+                    <div class="form__col">
+                        <p><b>Agency Name</b></p>
+                        <p><%= item.agency.name %></p>
+                    </div>
+                    <div class="form__col">
+                        <p><b>Driver Name</b></p>
+                        <p><%= item.driver.name %></p>
+                    </div>
+                </div>
+
+                <h3 class="form__info-box__title has-divider">Vehicle</h3>
+                <div class="form__row flex-ctr-spb">
+                    <div class="form__col">
+                        <p><b>Vehicle Registration #</b></p>
+                        <p><%= item.vehicle.registration_number %></p>
+                    </div>
+                    <div class="form__col">
+                        <p><b>Vehicle Type (Model)</b></p>
+                        <p><%= item.vehicle.vehicle_type %></p>
+                    </div>
+                </div>
+                <div class="form__row flex-ctr-spb">
+                    <div class="form__col">
+                        <p><b>Vehicle Body Description</b></p>
+                        <p><%= item.vehicle.description %></p>
+                    </div>
+                </div>
+
+                <h3 class="form__info-box__title has-divider">Staff</h3>
+
+                <ul class="meta-list">
+                    <% item.staff.forEach(function(staffItem) { %>
+                        <li><%= staffItem.staff_id.name %></li>
+                    <% }); %>
+                </ul>
+
+                <h3 class="form__info-box__title has-divider">Cargo</h3>
+
+                  <ul class="meta-list">
+                      <% item.carried.forEach(function(item) { %>
+                          <li><%= item.value %></li>
+                      <% }); %>
+                  </ul>
+            </div>
+        <% }); %>
+    <% } %>
+<% } catch (e) { %>
+    <p>Error rendering the template: <%= e.message %></p>
+<% } %>
+
+
+
+
+<div>
+    <h1>Admin Mission Set</h1>
+    <div class="form__info-box">
+        <div class="form__row flex-ctr-spb">
+            <div class="form__col">
+                <p><b>CLA</b></p>
+                <p><%= mission.cla %></p>
+            </div>
+            <div class="form__col">
+                <p><b>CLA Decision</b></p>
+                <p><%= mission.cla_decision %></p>
+            </div>
+        </div>
+
+            <div class="form__row flex-ctr-spb">
+                <div class="form__col">
+                    <p><b>UNOPS ACU Status</b></p>
+
+                </div>
+                <div class="form__col">
+                    <p><b>UNOPS ACU</b></p>
+                    <p><%= mission.unops_acu %></p>
+                </div>
+            </div>
+
+             <div class="form__row flex-ctr-spb">
+                <div class="form__col">
+                    <p><b>Mission Classification</b></p>
+                              <p><%= mission.mission_classification_info.requests_classifications %></p>
+                </div>
+                <div class="form__col">
+                    <p><b>Request Status</b></p>
+                    <p><%
+                       const statusMap = {
+                           "request_recieved": "Request Recieved",
+                           "request_submitted_cla": "Request submitted to CLA",
+                           "mission_completed": "Mission Completed",
+                           "request_cancelled_request": "Requestor Cancelled Request",
+                           "mission_postponed": "Mission Postponed",
+                           "mission_pending": "Mission Pending",
+                           "mission_aborted": "Mission Aborted"
+                       };
+
+                       const status = mission.request_status;
+                       const displayStatus = statusMap[status] || status;
+                       %>
+
+                       <%= displayStatus %></p>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<div>
+
+
+    <h2>Mission Debriefing Form</h2>
+
+     <p><b>Convoy composition (Agencies)</b>  :  <% if (mission) { %>
+                                                                                 <% mission.agency.forEach((item, index) => { %>
+                                                                                     <li><%= item.agency_id.name %></li>
+                                                                                 <% }); %>
+                                                                             <% } %></p>
+     <p><b>Mission Locations visited and route</b>  :
+     <% missionLocation_info.forEach((item, index) => { %>
+         <li><%= item.departure_umrah_id != null ? item.departure_umrah_id.installation_name : item.departure_installation_name %>
+             - <%= item.arrival_umrah_id != null ? item.arrival_umrah_id.installation_name : item.arrival_installation_name %>,
+         </li>
+     <% }); %>
+     </p>
+     <p><b>Date of the mission</b> : <%= mission.movement_date %></p>
+     <p><b>Mission Focal Point</b> : <%= mission && mission.leader.name %></p>
+     <br>
+
+    <div class='table-wrap'>
+        <h3>Section A</h3>
+        <table>
+            <thead>
+            <tr>
+                <th style="white-space: nowrap;">
+                    Road Condition
+                </th>
+                <th>
+                    Include remarks
+                    description next
+                    to the relevant
+                    cell under
+                    column 'road
+                    condition'
+                </th>
+                <th>
+                    Presence of EDs,
+                    ERWs, and UXO
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    A. Not Passable
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                    <%= mission.not_passable_road_condition %>
+
+                    </div>
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                  <p><%= mission.not_passable_presence_eds_erw_uxo %></p>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    B. Very bad
+                    condition
+                </td>
+                <td>
+                    <div class='input-wrap'>
+
+                    <p><%= mission.very_bad_road_condition %></p>
+
+                    </div>
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                     <p><%= mission.very_bad_presence_eds_erw_uxo %></p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    C. Bad condition
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                    <p><%= mission.bad_road_condition %></p>
+                    </div>
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                     <p><%= mission.bad_presence_eds_erw_uxo %></p>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    D. Regular
+                    condition
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                    <p><%= mission.regular_road_condition %></p>
+
+                    </div>
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                    <p><%= mission.regular_presence_eds_erw_uxo %></p>
+
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class='table-wrap' style="margin-bottom: 30px;">
+        <h3>Section B</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Insecurity or hostilities affecting humanitarian
+                    assistance
+                </th>
+
+                <th>
+                    Humanitarian Observations
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class='input-wrap'>
+                    <p><%= mission.humanitarian_assistance %></p>
+                    </div>
+                </td>
+                <td>
+                    <div class='input-wrap'>
+                    <p><%= mission.humanitarian_observations %></p>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<div>
+<p>
+If you require any clarifications, please reach out to the ACT.<br>
+
+Sincere regards,<br>
+
+Access Coordination Team,<br>
+UNRWA
+
+</p>
+</div>
+
+
+</div>
+
+
+
+            </div>
+        </div>
+    </body>
+</html>

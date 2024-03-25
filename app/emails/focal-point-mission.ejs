@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Email </title>
+  </head>
+  <body>
+    <center><img src="https://emergencysystem.info/uploads/logo2.jpg"  width="100px"></img>
+    <p style="font-size:20px;"><b>ERCS New Mission Submitted</b></p></center>
+
+<p>
+
+Hello <%= mission && mission.leader.name %>,<br> <br>
+This is a confirmation that the Mission Coordination Request (MCR) has been submitted successfully to the UNRWA Access Coordination Team (ACT). <br>
+The details of the mission are contained in the attached PDF. Please review the details of the MCR carefully to ensure accuracy. If you need to update or correct any details in the MCR, please reach out to the ACT as soon as possible, quoting the MCR Number, which is quoted below. <br>
+MR ID:<%= mission && mission.mission_id %><br>
+Mission Date: <%= mission && mission.create_date %><br>
+Mission Stops: <% missionLocation_info.forEach((item, index) => { %>
+                                                         <span><%= item.departure_umrah_id != null ? item.departure_umrah_id.installation_name : item.departure_installation_name %>-<%= item.arrival_umrah_id != null ? item.arrival_umrah_id.installation_name : item.arrival_installation_name %>,</span>
+                                                     <% }); %>
+<br>
+Mission Focal Person: <%= mission && mission.leader.user.name %><br> <br>
+
+Sincerely<br>
+
+Access Coordination Team,<br>
+
+
+</p>
+  </body>
+</html>
