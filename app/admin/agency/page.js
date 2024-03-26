@@ -62,7 +62,7 @@ function AgencyList() {
                                     {item.agency_logo && (
                                         <img
                                             className="w-8 h-8 rounded-full object-cover"
-                                            src={`${api_base_url}/${item.agency_logo}`}
+                                            src={`${item.agency_logo}`}
                                             alt={`${item.name}'s image`}
                                         />
                                     )}
