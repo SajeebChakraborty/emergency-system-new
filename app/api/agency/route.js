@@ -54,6 +54,7 @@ export async function POST(request) {
             try {
                 result2 = await uploadImageToCloudinary(payload.agency_logo);
                 const url=result2.url;
+                
                 payload.agency_logo=url;
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
