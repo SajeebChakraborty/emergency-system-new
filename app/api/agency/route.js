@@ -43,7 +43,7 @@ export async function POST(request) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
         }
-       return NextResponse.json({ error:payload.agency_logo, success: false });
+       //return NextResponse.json({ error:payload.agency_logo, success: false });
 
         //agency create
         let agency = new Agency(payload);
