@@ -6,6 +6,9 @@ import { connectionStr } from "@/lib/db";
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { uploadBase64Img } from "@/app/helper";
+import {v4 as uuidv4} from "uuid";
+import path from "path";
+import fs from "fs";
 
 export async function GET(){
  
@@ -34,7 +37,15 @@ export async function POST(request) {
         if (is_findEmail) {
             return NextResponse.json({msg: 'agency is already present',success:false}, {status: 409});
         }
-     return NextResponse.json({ error:payload.agency_logo, success: false });
+
+      const imageBuffer = await Buffer.from(image.split('base64,')[1], 'base64');
+        // image name
+        var filename = await `${uuidv4()}.jpg`; // Use the correct extension
+        // Define the absolute path to save the image
+        const pathext = 'public/uploads'
+        const imagePath = await path.resolve(pathext, filename);
+        await fs.writeFileSync(imagePath, imageBuffer);
+     return NextResponse.json({ error:filename, success: false });
         if(payload.agency_logo)
         {
             try {
