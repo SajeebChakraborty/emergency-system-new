@@ -12,7 +12,7 @@ cloudinary.config({
 const uploadImageToCloudinary = async (base64String) => {
   try {
     const result = await cloudinary.uploader.upload(base64String, {
-      folder: 'your-folder-name' // Optionally, specify a folder in Cloudinary
+      folder: 'emergency-system' // Optionally, specify a folder in Cloudinary
     });
     return result;
   } catch (error) {
