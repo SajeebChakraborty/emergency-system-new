@@ -25,16 +25,16 @@ export async function middleware(request: NextRequest) {
         //     }
         // }
     } else {
-        if (!bearerToken) {
-            return new NextResponse(JSON.stringify({error: "Bearer Token Not Defined"}))
-        }
+        // if (!bearerToken) {
+        //     return new NextResponse(JSON.stringify({error: "Bearer Token Not Defined"}))
+        // }
 
-        const token = bearerToken.split(' ')[1];
-        try {
-            await jose.jwtVerify(token, srcky)
-        } catch (error) {
-            return new NextResponse(JSON.stringify({error: "Bearer Token Not incorrect"}))
-        }
+        // const token = bearerToken.split(' ')[1];
+        // try {
+        //     await jose.jwtVerify(token, srcky)
+        // } catch (error) {
+        //     return new NextResponse(JSON.stringify({error: "Bearer Token Not incorrect"}))
+        // }
     }
 }
 
