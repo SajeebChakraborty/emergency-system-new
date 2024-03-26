@@ -37,13 +37,13 @@ export async function POST(request) {
         if (is_findEmail) {
             return NextResponse.json({msg: 'agency is already present',success:false}, {status: 409});
         }
-   const image = payload.agency_logo;
+  const image = payload.agency_logo;
 
         const imageBuffer = Buffer.from(image.split('base64,')[1], 'base64');
         // Generate a unique filename
         const filename = `${uuidv4()}.jpg`;
-        // Define the absolute path to save the image in a temporary directory
-        const tempDir = path.resolve(__dirname, 'temp/uploads');
+        // Define the path to save the image in a temporary directory
+        const tempDir = 'temp/uploads';
         // Ensure the parent directory exists, create it if not
         await fs.mkdir(path.dirname(tempDir), { recursive: true });
         // Construct the full path to save the image
