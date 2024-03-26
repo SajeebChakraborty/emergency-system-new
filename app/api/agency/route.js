@@ -42,9 +42,9 @@ export async function POST(request) {
      const imageBuffer = Buffer.from(image.split('base64,')[1], 'base64');
         const filename = `${uuidv4()}.jpg`;
         const tempDir = path.resolve(__dirname, 'temp'); // Assuming 'temp' directory is in the same directory as this script
-        if (!fs.existsSync(tempDir)) {
-            await fs.mkdir(tempDir, { recursive: true }); // Creating the 'temp' directory if it doesn't exist
-        }
+        // if (!fs.existsSync(tempDir)) {
+        //     await fs.mkdir(tempDir, { recursive: true }); // Creating the 'temp' directory if it doesn't exist
+        // }
         const imagePath = path.resolve(tempDir, filename);
         await fs.writeFile(imagePath, imageBuffer);
      return NextResponse.json({ error:filename, success: false });
