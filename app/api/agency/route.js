@@ -43,7 +43,7 @@ export async function POST(request) {
         // Generate a unique filename
         const filename = `${uuidv4()}.jpg`;
         // Define the path to save the image in a temporary directory
-        const tempDir = 'temp/uploads';
+        const tempDir = 'temp';
         // Ensure the parent directory exists, create it if not
         await fs.mkdir(path.dirname(tempDir), { recursive: true });
         // Construct the full path to save the image
