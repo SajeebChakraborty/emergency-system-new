@@ -34,7 +34,7 @@ export async function POST(request) {
         if (is_findEmail) {
             return NextResponse.json({msg: 'agency is already present',success:false}, {status: 409});
         }
-
+     return NextResponse.json({ error:payload.agency_logo, success: false });
         if(payload.agency_logo)
         {
             try {
@@ -43,7 +43,7 @@ export async function POST(request) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
         }
-       return NextResponse.json({ error:payload.agency_logo, success: false });
+      
 
         //agency create
         let agency = new Agency(payload);
