@@ -48,17 +48,20 @@ export async function POST(request) {
 //         // }
 //         const imagePath = path.resolve(tempDir, filename);
 //         await fs.writeFile(imagePath, imageBuffer);
-
+        let result2;
         if(payload.agency_logo)
         {
             try {
-                payload.agency_logo = await uploadImageToCloudinary(payload.agency_logo);
+                result2 = await uploadImageToCloudinary(payload.agency_logo);
+                const url=result2.url;
+                payload.agency_logo=url;
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
         }
+        
       
-
+        //return NextResponse.json({ url, success: true });
         //agency create
         let agency = new Agency(payload);
         let result = await agency.save();
