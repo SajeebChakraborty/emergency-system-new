@@ -43,7 +43,7 @@ export async function PUT(request, content) {
         // {
         
         const transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
+                host: process.env.HOST,
                 port: 465,
                 secure: true, // Set to false for explicit TLS
                 auth: {
