@@ -6,9 +6,9 @@ import { connectionStr } from "@/lib/db";
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { uploadBase64Img } from "@/app/helper";
-import {v4 as uuidv4} from "uuid";
-import path from "path";
-import fs from "fs";
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs').promises;
+const path = require('path');
 
 export async function GET(){
  
@@ -37,15 +37,19 @@ export async function POST(request) {
         if (is_findEmail) {
             return NextResponse.json({msg: 'agency is already present',success:false}, {status: 409});
         }
-     const image =payload.agency_logo;
+     const image = payload.agency_logo;
 
-      const imageBuffer = await Buffer.from(image.split('base64,')[1], 'base64');
-        // image name
-        var filename = await `${uuidv4()}.jpg`; // Use the correct extension
-        // Define the absolute path to save the image
-        const pathext = 'public/uploads'
-        const imagePath = await path.resolve(pathext, filename);
-        await fs.writeFileSync(imagePath, imageBuffer);
+        const imageBuffer = Buffer.from(image.split('base64,')[1], 'base64');
+        // Generate a unique filename
+        const filename = `${uuidv4()}.jpg`;
+        // Define the path to save the image in a temporary directory
+        const tempDir = 'temp/uploads';
+        // Ensure the directory exists, create it if not
+        await fs.mkdir(tempDir, { recursive: true });
+        // Construct the full path to save the image
+        const imagePath = path.resolve(tempDir, filename);
+        // Write the image buffer to disk
+        await fs.writeFile(imagePath, imageBuffer);
      return NextResponse.json({ error:filename, success: false });
         if(payload.agency_logo)
         {
