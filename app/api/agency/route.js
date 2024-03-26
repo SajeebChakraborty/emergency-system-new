@@ -37,6 +37,7 @@ export async function POST(request) {
         if (is_findEmail) {
             return NextResponse.json({msg: 'agency is already present',success:false}, {status: 409});
         }
+     const image =payload.agency_logo;
 
       const imageBuffer = await Buffer.from(image.split('base64,')[1], 'base64');
         // image name
