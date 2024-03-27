@@ -40,13 +40,17 @@ function PremiseTypeCreate() {
             setSuccessMessage("Premise Type Create Successfully");
             setName("");
             setErrorMessage("");
-            Swal.fire({
+            const confirmSwal= Swal.fire({
               title: 'success',
               text: 'Successfully Created',
               icon: 'success',
               // confirmButtonText: 'Cool'
             })
-            router.push("../premise-type", { scroll: false });
+            // if(confirmSwal.isConfirmed || confirmSwal.isDismissed)
+            // {
+              router.push('/admin/premise-type');
+            //}
+            
           }
           else
           {
