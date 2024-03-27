@@ -503,6 +503,9 @@ function StaffCreate() {
                                                                 International
                                                                 Staff
                                                             </option>
+                                                            <option value='Complimentary Staff'>
+                                                            Complimentary Staff
+                                                            </option>
                                                         </select>
                                                     </div>
 
