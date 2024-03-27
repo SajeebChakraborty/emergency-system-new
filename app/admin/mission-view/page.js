@@ -766,6 +766,19 @@ function MissionVIew() {
                                                                 }{" "}
                                                             </p>
                                                         </div>
+                                                        <div className='form__col'>
+                                                            <p>
+                                                                <b>
+                                                                    Driver ID
+                                                                </b>
+                                                            </p>
+                                                            <p>
+                                                                {
+                                                                    item.driver
+                                                                        .employee_id
+                                                                }{" "}
+                                                            </p>
+                                                        </div>
                                                     </div>
 
                                                     <h3 className='form__info-box__title has-divider'>
@@ -796,8 +809,19 @@ function MissionVIew() {
                                                             </p>
                                                             <p>
                                                                 {
-                                                                    item.vehicle
-                                                                        .vehicle_type
+                                                                    item.vehicle.vehicle_type
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                        <div className='form__col'>
+                                                            <p>
+                                                                <b>
+                                                                    Vehicle  Phone
+                                                                </b>
+                                                            </p>
+                                                            <p>
+                                                                {
+                                                                    item.vehicle.phone_number_one
                                                                 }
                                                             </p>
                                                         </div>
