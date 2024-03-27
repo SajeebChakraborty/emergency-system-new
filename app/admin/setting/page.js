@@ -344,7 +344,7 @@ function Setting() {
                             {settings.app_logo && (
                             <>
                                 <img
-                                src={api_base_url + "/" + settings.app_logo}
+                                src={settings.app_logo}
                                 alt="Image"
                                 // onClick={popupImg}
                                 className="cursor-pointer object-cover mx-auto my-5 w-80"

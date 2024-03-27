@@ -149,7 +149,20 @@ export async function DELETE(request, content) {
         // Update only the is_delete field to 1
         mission.is_delete = 1;
 
-        const result = await mission.save();
+        const result2 = await mission.save();
+
+        const filter2 = { _id: mission.user };
+
+        
+
+        const mission2 = await User.findById(filter2);
+
+        //return NextResponse.json({ error:mission, success: false });
+
+        // Update only the is_delete field to 1
+        mission2.is_delete = 1;
+
+        await mission2.save();
     } catch (error) {
         return NextResponse.json({ error:error.message, success: false });
     }

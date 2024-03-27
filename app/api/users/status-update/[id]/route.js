@@ -30,8 +30,12 @@ export async function PUT(request, content) {
         }
         // if(userInfo.status==0)
         // {
-            const newPassword=generateRandomCode(8);
-            payload.password= await bcrypt.hash(newPassword, 10);
+            
+                const newPassword=generateRandomCode(8);
+                if(userInfo.status==0)
+                {
+                    payload.password= await bcrypt.hash(newPassword, 10);
+                }
         //}
         
         const updatedata={...oldData,...payload}
@@ -41,43 +45,48 @@ export async function PUT(request, content) {
         
         // if(userInfo.status==0)
         // {
+
+      
         
-        const transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
-                port: 465,
-                secure: true, // Set to false for explicit TLS
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASSWORD,
-                },
-                tls: {
-                    // Do not fail on invalid certificates
-                    //rejectUnauthorized: false,
-                },
-        });
+                const transporter = nodemailer.createTransport({
+                        host: process.env.HOST,
+                        port: 465,
+                        secure: true, // Set to false for explicit TLS
+                        auth: {
+                            user: process.env.EMAIL_USER,
+                            pass: process.env.EMAIL_PASSWORD,
+                        },
+                        tls: {
+                            // Do not fail on invalid certificates
+                            //rejectUnauthorized: false,
+                        },
+                });
 
-        const password = newPassword;
-        //const mailContent = `Your password: ${password}`;
+                const password = newPassword;
+                //const mailContent = `Your password: ${password}`;
 
-        // Set up email options
-        // mailOptions.to = userInfo.email;
-        // mailOptions.subject = "User Creation Email";
-        // mailOptions.text = mailContent;
+                // Set up email options
+                // mailOptions.to = userInfo.email;
+                // mailOptions.subject = "User Creation Email";
+                // mailOptions.text = mailContent;
 
-        const emailTemplatePath = path.resolve("./app/emails/account_creation.ejs");
-        const emailTemplate = fs.readFileSync(emailTemplatePath, "utf-8");
-        const mailContent = ejs.render(emailTemplate, { password,email:userInfo.email,name:userInfo.name});
+                const emailTemplatePath = path.resolve("./app/emails/account_creation.ejs");
+                const emailTemplate = fs.readFileSync(emailTemplatePath, "utf-8");
+                const mailContent = ejs.render(emailTemplate, { password,email:userInfo.email,name:userInfo.name});
 
 
-        const mailOptions = {
-           from: process.env.EMAIL_USER,
-           to: userInfo.email,
-           subject: "ERCS Account Creation Notification",
-           html: mailContent,
-       };
+                const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: userInfo.email,
+                subject: "ERCS Account Creation Notification",
+                html: mailContent,
+            };
+            if(userInfo.status==0)
+            {
+                // Send the email
+                await transporter.sendMail(mailOptions);
 
-        // Send the email
-        await transporter.sendMail(mailOptions);
+            }
 
         //}
     } catch (error) {

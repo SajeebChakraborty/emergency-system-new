@@ -16,8 +16,15 @@ export async function POST(request) {
         }
         await mongoose.connect(connectionStr);
         const srcky=process.env.JWT_SECRET
-        const record = {email: email};
+        const record = {email: email,is_delete:0};
         const user = await User.findOne(record);
+
+        // const record2 = {email: email,is_delete:1};
+        // const deltedUser = await User.findOne(record2);
+        // if(deltedUser.is_delete==1)
+        // {
+        //     return NextResponse.json({'message': 'Account Already Deleted',success:false}, {status: 401});
+        // }
 
         let staff_id;
        

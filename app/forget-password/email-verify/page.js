@@ -73,9 +73,9 @@ function Login() {
                                         <div className='px-8 py-10'>
                                             <a href='/' className='max-w-[120px] mx-auto mb-2.5 block'>
                                             {settings.app_logo && (
-                                                <Image
+                                                <img
                                                     src={
-                                                        '/'+settings.app_logo
+                                                        settings.app_logo
                                                     }
 
                                                     blurDataURL={
@@ -135,7 +135,7 @@ function Login() {
                                                 </div>
 
                                                 <div className='flex items-center justify-between mt-8'>
-                                                    <button className='bg-indigo-600 duration-300 leading-normal transition opacity-90 hover:opacity-100 text-white font-bold py-2 px-4 rounded' type="button">
+                                                    <button className='bg-indigo-600 duration-300 leading-normal transition opacity-90 hover:opacity-100 text-white font-bold py-2 px-4 rounded' type="submit">
                                                         Verify
                                                     </button>
                                                 </div>
