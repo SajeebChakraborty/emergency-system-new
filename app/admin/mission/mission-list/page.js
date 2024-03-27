@@ -132,7 +132,7 @@ function MissionList() {
             ? "Mission Pending"
             : request_status === "mission_aborted"
             ? "Mission Aborted"
-            : "Unknown Status";
+            : "Request Received";
     }
 
     function setScortActiveClass(key){
@@ -230,7 +230,7 @@ function MissionList() {
                                     className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
                                 ></span>
                                 <span className='relative'>
-                                    {getStatusString(item.status)}
+                                    {item.status}
                                 </span>
                             </span>
                         </td>

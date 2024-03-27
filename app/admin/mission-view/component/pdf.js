@@ -249,7 +249,7 @@ const PDFFile = ({mission,missionLocation,missionVehicle}) => {
                 <View style={styles.sectionRow}>
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>Sat Phone</Text>
-                        <Text style={styles.text}>{mission && mission.leader.phone}</Text>
+                        <Text style={styles.text}>{mission && mission.leader.statelite_phone}</Text>
                     </View>
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>GSM Phone 2</Text>
@@ -262,6 +262,12 @@ const PDFFile = ({mission,missionLocation,missionVehicle}) => {
                         <Text style={styles.label}>Purpose</Text>
                         <Text style={styles.text}>{mission && mission.purpose}</Text>
                     </View>
+                    <View style={styles.sectionCol}>
+                        <Text style={styles.label}>Remarks</Text>
+                        <Text style={styles.text}>{mission && mission.remarks}</Text>
+                    </View>
+                </View>
+                <View style={styles.sectionRow}>
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>Cluster</Text>
                         <Text style={styles.text}>{mission && mission.mission_cluster.name}</Text>
@@ -333,10 +339,10 @@ const PDFFile = ({mission,missionLocation,missionVehicle}) => {
                         <Text style={styles.tableLabel}>{item.arrival_umrah_id!=null?item.arrival_umrah_id.installation_name:item.arrival_installation_name}</Text>
                     </View>
                     <View style={styles.tableCol4}>
-                        <Text style={styles.tableLabel}>{item.arrival_latitude}</Text>
+                        <Text style={styles.tableLabel}>{item.arrival_longitude}</Text>
                     </View>
                     <View style={styles.tableCol5}>
-                        <Text style={styles.tableLabel}>{item.arrival_longitude}</Text>
+                        <Text style={styles.tableLabel}>{item.arrival_latitude}</Text>
                     </View>
                 </View>
 
