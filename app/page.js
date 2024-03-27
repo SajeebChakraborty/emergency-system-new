@@ -82,9 +82,9 @@ function Login() {
                                         >
                                             {settings.app_logo && (
 
-                                                    <Image
+                                                    <img
                                                         src={
-                                                            '/'+settings.app_logo
+                                                            settings.app_logo
                                                         }
 
                                                         blurDataURL={

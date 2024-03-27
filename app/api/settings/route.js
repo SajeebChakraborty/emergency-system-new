@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { connectionStr } from "@/lib/db";
 import { uploadBase64Img } from "@/app/helper";
 import { AppSetting } from "@/lib/model/setting";
+import uploadImageToCloudinary from "@/app/uploadImageToCloudinary";
 
 export async function POST(request) {
     var result;
@@ -12,7 +13,7 @@ export async function POST(request) {
         // If app_logo exists, upload it
         if (payload.app_logo) {
             try {
-                payload.app_logo = await uploadBase64Img(payload.app_logo);
+                payload.app_logo = await uploadImageToCloudinary(payload.app_logo);
             } catch (e) {
                 return NextResponse.json({ e, success: 'img upload error found' });
             }

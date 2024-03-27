@@ -63,46 +63,49 @@ function Login() {
         }
     };
 
+    console.log(settings.app_logo);
     return (
         <div className='flex h-screen overflow-hidden'>
             {/* Content area */}
             <div className='relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden'>
-                <main className="user-page">
+                <main className='user-page'>
                     <div className='px-4 sm:px-6 lg:px-8 w-full'>
                         <div className='font-sans antialiased bg-grey-lightest'>
                             {/* Content */}
                             <div className='w-full bg-grey-lightest min-h-screen flex items-center justify-center py-16'>
                                 <div className='container max-w-[650px] px-2 sm:px-4 mx-auto'>
                                     <div className='user-page-logo'>
-                                        <a
+                                        <Link
                                             href='/'
+                                            style={{width: '220px'}}
                                             className='max-w-[120px] mx-auto mb-2.5 block'
                                         >
                                             {settings.app_logo && (
-                                                <Image
-                                                src={
-                                                    '/'+settings.app_logo
-                                                }
 
-                                                blurDataURL={
-                                                    '/'+settings.app_logo
-                                                }
+                                                    <img
+                                                        src={
+                                                            settings.app_logo
+                                                        }
 
-                                                width={307}
-                                                height={221}
-                                                alt='Image'
-                                                placeholder="blur"
-                                                className='cursor-pointer object-cover mx-auto my-5 w-80'
-                                            />
+                                                        blurDataURL={
+                                                            '/'+settings.app_logo
+                                                        }
+
+                                                        width={307}
+                                                        height={221}
+                                                        alt='Image'
+                                                        placeholder="blur"
+                                                        className='cursor-pointer object-cover mx-auto my-5 w-80'
+                                                    />
                                             )}
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className='mx-auto bg-white rounded-xl shadow'>
                                         <div className='px-8 py-10'>
-                                            <h2 className='text-[24px] sm:text-[28px] text-grey-darker' style={{marginBottom: '30px'}}>
-                                                <span style={{fontWeight: '700', display: 'block'}}>User Login</span>
-                                                <span style={{fontSize: '60%', display: 'block'}}>Please enter your details</span>
-                                            </h2>
+                                        <h2 className='text-[24px] sm:text-[28px] text-grey-darker' style={{marginBottom: '30px'}}>
+                                            <span style={{fontWeight: '700', display: 'block'}}>User Login</span>
+                                            <span style={{fontSize: '60%', display: 'block'}}>Please enter your details</span>
+                                        </h2>
                                             {errorMessage && (
                                                 <div
                                                     className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4'
@@ -175,6 +178,7 @@ function Login() {
                                                         }}
                                                         className='text-dark'
                                                     >
+
                                                         Forgot Password
                                                     </Link>
                                                 </div>

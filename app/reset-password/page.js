@@ -73,9 +73,9 @@ function Login() {
                                         <div className='px-8 py-10'>
                                             <a href='/' className='max-w-[120px] mx-auto mb-2.5 block'>
                                             {settings.app_logo && (
-                                                <Image
+                                                <img
                                                 src={
-                                                    '/'+settings.app_logo
+                                                    settings.app_logo
                                                 }
 
                                                 blurDataURL={

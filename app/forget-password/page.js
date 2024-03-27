@@ -70,9 +70,9 @@ function Login() {
                                 <div className='container max-w-[650px] px-2 sm:px-4 mx-auto'>
                                 <a href='/' className='max-w-[120px] mx-auto mb-2.5 block'>
                                 {settings.app_logo && (
-                                    <Image
+                                    <img
                                     src={
-                                        '/'+settings.app_logo
+                                        settings.app_logo
                                     }
 
                                     blurDataURL={
