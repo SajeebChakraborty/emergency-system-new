@@ -13,34 +13,35 @@ function MissionList() {
     const fetchData = async () => {
         try {
             const { data } = await axiosClient.get("mission");
-
             let resData = [];
-            data.result.map((item) => {
-                let tDeta = {
-                    id: item.mission_id,
-                    cluster:
-                        item.cluster && item.cluster.length > 0
-                            ? item.cluster[0].name
-                            : "",
-                    leader: item.leader_details[0].name,
-                    date: convertDateFormat(item.movement_date, newDateFormat),
-                    timeStamp: new Date(
-                        convertDateFormat(item.movement_date, newDateFormat)
-                    ).getTime(),
-                    cla:
-                        item.cla_decision == "partially_approved"
-                            ? "partially approved"
-                            : item.cla_decision
-                            ? item.cla_decision
-                            : "",
-                    status: getStatusString(item.request_status),
-                    _id: item._id,
-                };
+            if( data && data.result ){
+                data.result.map((item) => {
+                    let tDeta = {
+                        id: item.mission_id,
+                        cluster:
+                            item.cluster && item.cluster.length > 0
+                                ? item.cluster[0].name
+                                : "",
+                        leader: item.leader_details[0].name,
+                        date: convertDateFormat(item.movement_date, newDateFormat),
+                        timeStamp: new Date(
+                            convertDateFormat(item.movement_date, newDateFormat)
+                        ).getTime(),
+                        cla:
+                            item.cla_decision == "partially_approved"
+                                ? "partially approved"
+                                : item.cla_decision
+                                ? item.cla_decision
+                                : "",
+                        status: getStatusString(item.request_status),
+                        _id: item._id,
+                    };
 
-                resData.push(tDeta);
-            });
-            setFilterData(resData);
-            setMissonData(resData);
+                    resData.push(tDeta);
+                });
+                setFilterData(resData);
+                setMissonData(resData);
+            }
         } catch (error) {
             console.error("Error fetching mission:", error);
         }
