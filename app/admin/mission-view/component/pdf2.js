@@ -152,7 +152,7 @@ const ReportPDF = ({ mission, missionLocation, missionVehicle }) => {
                         <Text style={styles.label}>Road Condition</Text>
                     </View>
                     <View style={styles.sectionCol}>
-                        <Text key={index} style={styles.label}>
+                        <Text style={styles.label}>
                             Include remarks description next to the relevant
                             cell under column road condition
                         </Text>

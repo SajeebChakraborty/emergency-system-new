@@ -8,7 +8,8 @@ import nodemailer from "nodemailer";
 import {uploadBase64Img} from "../../helper";
 import fs from "fs";
 import ejs from "ejs";
-
+import path from "path";
+import uploadImageToCloudinary from "@/app/uploadImageToCloudinary";
 function getCurrentFormattedDate() {
     const currentDate = new Date(); // Get the current date
     const year = currentDate.getFullYear(); // Get the current year
@@ -41,7 +42,7 @@ export async function POST(request) {
         if (newimglist.length > 0) {
             imgList = await Promise.all(newimglist.map(async (item) => {
                 if (isBase64(item)) {
-                    return await uploadBase64Img(item);
+                    return await uploadImageToCloudinary(item);
                 } else {
                     return item; // Return the item unchanged if it's not a base64 string
                 }

@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { Department } from "@/lib/model/department";
 import { uploadBase64Img } from "@/app/helper";
+import uploadImageToCloudinary from "@/app/uploadImageToCloudinary";
 
 export async function GET(request,content){
  
@@ -83,7 +84,7 @@ export async function PUT(request, content) {
         if(payload.staff_photo)
         {
             try {
-                payload.staff_photo = await uploadBase64Img(payload.staff_photo);
+                payload.staff_photo = await uploadImageToCloudinary(payload.staff_photo);
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
@@ -95,7 +96,7 @@ export async function PUT(request, content) {
         if(payload.passport_original_attachment)
         {
             try {
-                payload.passport_original_attachment = await uploadBase64Img(payload.passport_original_attachment);
+                payload.passport_original_attachment = await uploadImageToCloudinary(payload.passport_original_attachment);
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
@@ -107,7 +108,7 @@ export async function PUT(request, content) {
         if(payload.passport_duplicate_attachment)
         {
             try {
-                payload.passport_duplicate_attachment = await uploadBase64Img(payload.passport_duplicate_attachment);
+                payload.passport_duplicate_attachment = await uploadImageToCloudinary(payload.passport_duplicate_attachment);
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
@@ -119,7 +120,7 @@ export async function PUT(request, content) {
         if(payload.national_id_attachment)
         {
             try {
-                payload.national_id_attachment = await uploadBase64Img(payload.national_id_attachment);
+                payload.national_id_attachment = await uploadImageToCloudinary(payload.national_id_attachment);
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }

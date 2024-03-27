@@ -79,10 +79,10 @@ function Staff() {
                                 <div className='ml-3'>
                                     <p className='text-gray-900 whitespace-no-wrap w-8 h-8 nx-image'>
                                         {item.staff_photo && (
-                                            <Image
+                                            <img
                                                 className='rounded-full'
                                                 fill={true}
-                                                src={`/${item.staff_photo}`}
+                                                src={`${item.staff_photo}`}
                                                 alt={`${item.name}'s image`}
                                             />
                                         )}

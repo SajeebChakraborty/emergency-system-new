@@ -1486,7 +1486,7 @@ function MissionVIew() {
                                                         <ul className="img-grid">
 
                                                             {
-                                                                imageListData.map((item,index)=>(isBase64(item)||item=="")?<li key={index}><label><input name={index} onChange={(e)=>storeImage(e,index)} type='file'/></label></li>: <li key={index}><img src={`http://localhost:3000/${item}`} alt="Image" /></li>)
+                                                                imageListData.map((item,index)=>(isBase64(item)||item=="")?<li key={index}><label><input name={index} onChange={(e)=>storeImage(e,index)} type='file'/></label></li>: <li key={index}><img src={item} alt="Image" /></li>)
                                                             }
 
                                                         </ul>

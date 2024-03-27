@@ -1189,9 +1189,9 @@ function StaffCreate() {
                                                 </label>
                                                 <p className='text-gray-900 whitespace-no-wrap h-8 w-8 nx-image'>
                                                     {staffPhoto2 && (
-                                                        <Image
+                                                        <img
                                                         fill={true}
-                                                            src={`/${staffPhoto2}`}
+                                                            src={`${staffPhoto2}`}
                                                             alt=''
                                                         />
                                                     )}
@@ -1208,11 +1208,11 @@ function StaffCreate() {
                                                 </label>
                                                 <p className='text-gray-900 whitespace-no-wrap w-8 h-8'>
                                                     {passportOrginalAttachment2 && (
-                                                        <Image
+                                                        <img
                                                             alt=""
                                                             fill={true}
                                                             className=' rounded-full object-cover'
-                                                            src={`/${passportOrginalAttachment2}`}
+                                                            src={`${passportOrginalAttachment2}`}
                                                         />
                                                     )}
                                                 </p>
@@ -1228,9 +1228,9 @@ function StaffCreate() {
                                                 </label>
                                                 {passportDuplicateAttachment2 && (
                                                     <p className='w-8 h-8'>
-                                                        <Image
+                                                        <img
                                                             fill={true}
-                                                            src={`/${passportOrginalAttachment2}`}
+                                                            src={`${passportOrginalAttachment2}`}
                                                             alt=''
                                                         />
                                                     </p>
@@ -1249,7 +1249,7 @@ function StaffCreate() {
                                                     {nationaltyAttachment2 && (
                                                         <img
                                                             className='w-8 h-8 rounded-full object-cover'
-                                                            src={`${api_base_url}/${nationaltyAttachment2}`}
+                                                            src={`${nationaltyAttachment2}`}
                                                         />
                                                     )}
                                                 </p>

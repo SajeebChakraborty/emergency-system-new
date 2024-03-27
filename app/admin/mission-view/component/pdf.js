@@ -217,7 +217,7 @@ const PDFFile = ({mission,missionLocation,missionVehicle}) => {
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>Agencies
                         </Text>
-                            {mission && mission.agency.map(item =>( <Text key={index} style={styles.text}>{item.agency_id.name}</Text>))}
+                            {mission && mission.agency.map((item,index) =>( <Text key={index} style={styles.text}>{item.agency_id.name}</Text>))}
 
                     </View>
                 </View>
@@ -364,7 +364,7 @@ const PDFFile = ({mission,missionLocation,missionVehicle}) => {
                  <View style={styles.sectionRow}>
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>Cargo</Text>
-                       {item.carried.map(item=>  <Text key={index} style={styles.text}>{item.value}</Text>)}
+                       {item.carried.map((item,index)=>  <Text key={index} style={styles.text}>{item.value}</Text>)}
                     </View>
                 </View>
 
