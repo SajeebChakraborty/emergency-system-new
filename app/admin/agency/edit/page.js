@@ -431,15 +431,15 @@ function AgencyCreate() {
                               </label>
                               <p className="text-gray-900 whitespace-no-wrap nx-image" style={{width: '220px', position: 'relative'}}>
                                     {agency_logo2 && (
-                                        <Image
-                                        fill={true}
-                                            className="w-8 h-8"
-                                            src={`/${agency_logo2}`}
-                                            alt=""
-                                        />
+                                       <img
+                                       className="w-8 h-8 rounded-full object-cover"
+                                       src={`${agency_logo2}`}
+                                      
+                                   />
                                     )}
                                 </p>
                       </div>
+                      
 
                       <div className="mb-4">
                             <label

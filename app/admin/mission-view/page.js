@@ -3,10 +3,14 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 import axiosClient from "@/app/axiosClient";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 
-import { Document, Page, Text, PDFDownloadLink } from '@react-pdf/renderer';
+import { Document, PDFDownloadLink, Page } from '@react-pdf/renderer';
+// import PDFFile from "./component/pdf";
+import PDFFile from "./component/pdf";
+import ReportPDF  from "./component/pdf2"
+
 function convertDateFormat(dateString, newFormat) {
     // Parse the input date string
     let parsedDate = new Date(dateString);
@@ -56,15 +60,6 @@ function MissionVIew() {
     const [places, setplaces] = useState([]);
     const [imageListData, setImageList] = useState([""]);
     const [vehicles, setvehicles] = useState([]);
-    const options = [
-        {value: "1", label: "Staff One"},
-        {value: "2", label: "Staff Two"},
-        {value: "3", label: "Staff Three"},
-        {value: "4", label: "Staff Four"},
-        {value: "5", label: "Staff Five"},
-        {value: "6", label: "Staff Six"},
-        {value: "7", label: "Staff Seven"},
-    ];
 
     let dataList = {
         m_id: mission_id,
@@ -107,6 +102,7 @@ function MissionVIew() {
     const [requestStatusDataList, setRequestStatusDataList] = useState("");
     const [acuDataList, setAcuStatusDataList] = useState("");
     const [classificationList, setclassification] = useState([]);
+    const name="kazi";
 
     const fetchData3 = async () => {
         try {
@@ -118,26 +114,9 @@ function MissionVIew() {
         }
     };
 
-    const classification = async () => {
-        try {
-            const {data} = await axiosClient.get("misson-classification");
-            let classificationData = data.result.map(item => (
-                <option key={item._id} value={item._id}>
-                    {item.requests_classifications}
-                </option>
-            ));
-
-            setclassification(classificationData);
-            console.log(data.result);
-        } catch (error) {
-            console.error("Error fetching classification:", error);
-        }
-    };
-
     useEffect(() => {
         fetchData3();
-        classification();
-    }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
+    }, []);
 
     useEffect(() => {
         const fetchData4 = async () => {
@@ -151,7 +130,7 @@ function MissionVIew() {
         };
 
         fetchData4();
-    }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
+    }, []);
 
     useEffect(() => {
         const fetchData2 = async () => {
@@ -165,7 +144,7 @@ function MissionVIew() {
         };
 
         fetchData2();
-    }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
+    }, []);
 
     const fetchData = async () => {
         try {
@@ -214,29 +193,6 @@ function MissionVIew() {
             console.error("Error fetching users:", error);
         }
     };
-
-    // function storeImage(e){
-    //     const {name, value} = e.target;
-    //     const file = e.target.files[0];
-    //     var base64=null;
-    //     if (file) {
-    //         const reader = new FileReader();
-    //
-    //         reader.onloadend = () => {
-    //             // Once the FileReader has read the file, set the base64 data
-    //             base64=reader.result;
-    //         };
-    //
-    //         // Read the file as a data URL (base64)
-    //         reader.readAsDataURL(file);
-    //     }
-    //     console.log(base64);
-    //
-    //     imageList[name]=base64;
-    //     setImageList(old => imageList);
-    //
-    //     console.log(imageList);
-    // }
 
     const storeImage = (e,index) => {
         const file = e.target.files[0];
@@ -358,6 +314,9 @@ function MissionVIew() {
         return null;
     }
 
+    var reportPdf= <ReportPDF mission={mission} missionLocation={places} missionVehicle={vehicles}/>
+    var detailsPdf= <PDFFile mission={mission} missionLocation={places} missionVehicle={vehicles}/>
+
     return (
         <div className='flex h-screen overflow-hidden'>
             <div className='relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden'>
@@ -369,27 +328,25 @@ function MissionVIew() {
                                     <div>
 
                                             <PDFDownloadLink document={<Document>
-                                                <Page>
-                                                    <Text>Sample PDF Content---------</Text>
+                                                <Page style={{padding: '12px'}}
+                                                >
+                                                    {detailsPdf}
                                                 </Page>
-                                            </Document>} fileName="sample.pdf">
-                                                {({ blob, url, loading, error }) =>
-                                                    loading ? 'Loading document...' : 'Download PDF'
-                                                }
+                                            </Document>} fileName={`${mission && mission.mission_id}.pdf`}>
+                                                {mission?"Download PDF":"processing..."}
                                             </PDFDownloadLink>
 
                                     </div>
 
+                                    {/*<button*/}
+                                        {/*className='mt-4 px-4 py-2 mx-2 bg-main text-white rounded'*/}
+                                        {/*onClick={downloadPdf}*/}
+                                        {/*disabled={!mission}*/}
 
-                                    <button
-                                        className='mt-4 px-4 py-2 mx-2 bg-main text-white rounded'
-                                        onClick={downloadPdf}
-                                        disabled={!mission}
+                                    {/*>*/}
+                                        {/*{mission?"Download PDF":"processing..."}*/}
 
-                                    >
-                                        {mission?"Download PDF":"processing..."}
-
-                                    </button>
+                                    {/*</button>*/}
 
                                     {/*<PDFDownloadLink document={<MissionPDF missionId={'sdfsdfsdf'}/>}*/}
                                     {/*fileName="example.pdf">*/}
@@ -992,10 +949,16 @@ function MissionVIew() {
                                                                 }
 
                                                             >
+
                                                                 <option value=''>
                                                                     Select
                                                                 </option>
-                                                                {classificationList}
+                                                                <option value='MCR'>
+                                                                    MCR
+                                                                </option>
+                                                                <option value='MNR'>
+                                                                    MNR
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1110,7 +1073,6 @@ function MissionVIew() {
                                                             }
 
                                                             onInput={setdata}
-                                                          
                                                             className='form__input'
                                                             id='dsc'
                                                         />
@@ -1263,12 +1225,25 @@ function MissionVIew() {
                                     { mission && mission.request_status=="mission_completed" ?
                                         <div className='msv-block bg-white shadow-md rounded px-8 pt-6 pb-8 mb-14 mdf-form-wrap'>
                                             <h2>Mission Debriefing Form</h2>
-                                            <button
-                                                className='mt-4 mb-4 px-4 py-2 mx-2 bg-main text-white rounded'
-                                                onClick={downloadReport}
-                                            >
-                                                Download PDF
-                                            </button>
+                                            {/*<button*/}
+                                                {/*className='mt-4 mb-4 px-4 py-2 mx-2 bg-main text-white rounded'*/}
+                                                {/*onClick={downloadReport}*/}
+                                            {/*>*/}
+                                                {/*Download PDF*/}
+                                            {/*</button>*/}
+                                            <PDFDownloadLink document={<Document>
+                                                <Page style={{padding: '12px'}}
+                                                >
+                                                    {reportPdf}
+                                                </Page>
+                                            </Document>} fileName={`${mission && mission.mission_id}-Report.pdf`}>
+                                                {mission?"Download PDF":"processing..."}
+                                            </PDFDownloadLink>
+                                            <br/>
+                                            <br/>
+
+
+
                                             <div className='mdf-form-body'>
                                                 <div className='mdf-form-head'>
                                                     <p>

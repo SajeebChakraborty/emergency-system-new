@@ -14,7 +14,7 @@ const uploadImageToCloudinary = async (base64String) => {
     const result = await cloudinary.uploader.upload(base64String, {
       folder: 'emergency-system' // Optionally, specify a folder in Cloudinary
     });
-    return result;
+    return result.url;
   } catch (error) {
     console.error('Error uploading image to Cloudinary:', error);
     throw new Error('Error uploading image to Cloudinary');

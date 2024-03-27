@@ -9,6 +9,7 @@ import fs from "fs";
 import { Agency } from "@/lib/model/agency";
 import { uploadBase64Img } from "@/app/helper";
 import { MissionCluster } from "@/lib/model/missionCluster";
+import uploadImageToCloudinary from "@/app/uploadImageToCloudinary";
 
 export async function PUT(request, content) {
     let result = [];
@@ -36,7 +37,7 @@ export async function PUT(request, content) {
         if(payload.agency_logo)
         {
             try {
-                payload.agency_logo = await uploadBase64Img(payload.agency_logo);
+                payload.agency_logo = await uploadImageToCloudinary(payload.agency_logo);
             } catch (e) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }

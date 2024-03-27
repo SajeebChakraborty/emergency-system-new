@@ -4,6 +4,8 @@ import axiosClient from "@/app/axiosClient";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 function MissionList() {
+    const [mission, setMissionList] = useState([]);
+
     const [sortBy, setSortBy] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
@@ -13,7 +15,6 @@ function MissionList() {
     const fetchData = async () => {
         try {
             const { data } = await axiosClient.get("mission");
-
             let resData = [];
             data.result.map((item) => {
                 let tDeta = {
@@ -42,36 +43,25 @@ function MissionList() {
             setFilterData(resData);
             setMissonData(resData);
         } catch (error) {
-            console.error("Error fetching mission:", error);
+            console.error("Error fetching users:", error);
         }
     };
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
 
-    useEffect(() => {
-        getData()
-    }, [searchQuery, sortOrder, sortBy]);
-
-    const handleSort = (key ) => {
+    const handleSort = (key) => {
         if (sortBy === key) {
             setSortOrder(sortOrder === "asc" ? "desc" : "asc");
         } else {
             setSortBy(key);
             setSortOrder("asc");
         }
-    };
 
-    function getData(){
-        let searchData = searchByNameSimilar(missionData, searchQuery, [
-            'id',
-            'cluster',
-            'leader',
-            'cla',
-            'status'
-        ]);
-        const sortedData = [...searchData].sort((a, b) => {
+        const sortedData = [...filterData].sort((a, b) => {
+            if (sortBy === null) return 0;
+
             if (typeof a[sortBy] === "string" && typeof b[sortBy] === "string") {
                 return sortOrder === "asc"
                     ? a[sortBy].localeCompare(b[sortBy])
@@ -84,25 +74,33 @@ function MissionList() {
         });
 
         setFilterData(sortedData);
-    }
+    };
 
-    function searchByNameSimilar(array, searchTerm, columns) {
-        let _data = [];
-
-        for (var i = 0; i < columns.length; i++) {
-                let tData = array.filter(item => item[columns[i]].toLowerCase().includes(searchTerm.toLowerCase()));
-                if( tData.length > 0){
-                    _data = tData;
-                    break;
-                }
-          }
-
-        return _data;
+    function searchByNameSimilar(array, searchTerm) {
+        return array.filter(item => item.id.toLowerCase().includes(searchTerm.toLowerCase()));
     }
 
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);
+        let _filterData = searchByNameSimilar(missionData, searchQuery);
+        setFilterData(_filterData);
       };
+
+    async function missionStatus(id, status) {
+        let adminData = {
+            mission_id: id,
+            status: status,
+        };
+
+        const response = await axiosClient.post(
+            "mission-status-update",
+            adminData
+        );
+        if (response.data.success == true) {
+            fetchData();
+            alert("Mission Status change Successfully");
+        }
+    }
 
     function convertDateFormat(dateString, newFormat) {
         // Parse the input date string
