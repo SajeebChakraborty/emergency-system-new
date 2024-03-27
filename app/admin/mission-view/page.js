@@ -10,6 +10,9 @@ import { Document, PDFDownloadLink, Page } from '@react-pdf/renderer';
 // import PDFFile from "./component/pdf";
 import PDFFile from "./component/pdf";
 import ReportPDF  from "./component/pdf2"
+import {getCookie} from "cookies-next";
+
+const authUserType=getCookie('authUserType');
 
 function convertDateFormat(dateString, newFormat) {
     // Parse the input date string
@@ -854,7 +857,7 @@ function MissionVIew() {
                                             ))}
                                     </div>
 
-                                    <div className='msv-block bg-white shadow-md rounded px-8 pt-6 pb-8 mb-14'>
+                                    {authUserType=="admin"? <div className='msv-block bg-white shadow-md rounded px-8 pt-6 pb-8 mb-14'>
                                         <h2>Admin Mission Set</h2>
                                         <div className='collapsable-item__body ams' style={{height: 'auto'}}>
                                             <div className='collapsable-item__body-row flex-start-spb'>
@@ -1022,8 +1025,8 @@ function MissionVIew() {
                                                                     Approved
                                                                 </option>
                                                                 <option value='partially_approved'>
-                                                                Partially Approved
-                                                            </option>
+                                                                    Partially Approved
+                                                                </option>
                                                                 <option value='denied'>
                                                                     Denied
                                                                 </option>
@@ -1221,7 +1224,8 @@ function MissionVIew() {
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>:"" }
+
                                     { mission && mission.request_status=="mission_completed" ?
                                         <div className='msv-block bg-white shadow-md rounded px-8 pt-6 pb-8 mb-14 mdf-form-wrap'>
                                             <h2>Mission Debriefing Form</h2>
