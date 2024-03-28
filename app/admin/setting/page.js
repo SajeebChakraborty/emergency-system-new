@@ -51,7 +51,25 @@ function Setting() {
 
     console.log(e);
     const file = e.target.files[0];
-    if (file) {
+    const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
+        if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Logo (jpg or png).');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Logo exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
       const reader = new FileReader();
 
       reader.onloadend = () => {
