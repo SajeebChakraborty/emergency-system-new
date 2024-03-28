@@ -812,18 +812,18 @@ function MissionVIew() {
                                                                 }
                                                             </p>
                                                         </div>
-                                                        <div className='form__col'>
-                                                            <p>
-                                                                <b>
-                                                                    Vehicle  Phone
-                                                                </b>
-                                                            </p>
-                                                            <p>
-                                                                {
-                                                                    item.vehicle.phone_number_one
-                                                                }
-                                                            </p>
-                                                        </div>
+                                                        {/*<div className='form__col'>*/}
+                                                        {/*    <p>*/}
+                                                        {/*        <b>*/}
+                                                        {/*            Vehicle  Phone*/}
+                                                        {/*        </b>*/}
+                                                        {/*    </p>*/}
+                                                        {/*    <p>*/}
+                                                        {/*        {*/}
+                                                        {/*            item.vehicle.phone_number_one*/}
+                                                        {/*        }*/}
+                                                        {/*    </p>*/}
+                                                        {/*</div>*/}
                                                     </div>
                                                     <div className='form__row flex-ctr-spb'>
                                                         <div className='form__col'>
