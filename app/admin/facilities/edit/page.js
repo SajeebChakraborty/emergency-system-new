@@ -563,14 +563,11 @@ useEffect(() => {
                               {val.name}
                             </option>
                           ))} */}
-                          <option value="Approved">
-                            Approved
+                          <option value='Yes'>
+                              Yes
                           </option>
-                          <option value="Partially Approved">
-                            Partially Approved
-                          </option>
-                          <option value="Denied">
-                            Denied
+                          <option value='No'>
+                              No
                           </option>
                         </select>
                       </div>

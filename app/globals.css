@@ -238,6 +238,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
 .has-sorting th{
     position: relative;
     cursor: pointer;
+    padding-right: 40px;
 }
 
 .has-sorting th:after,

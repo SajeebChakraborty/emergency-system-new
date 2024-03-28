@@ -44,6 +44,10 @@ export async function POST(request) {
                 return NextResponse.json({e, success: 'img upload error found'});
             }
         }
+        //if agency_cluster is not provided then set default value
+        if (!payload.agency_cluster) {
+            payload.agency_cluster = null;
+        }
 
         //agency create
         let agency = new Agency(payload);

@@ -74,7 +74,25 @@ function AgencyCreate() {
 
     const handleAgency_logoChange = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Agency Logo (jpg or png).');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Agency Logo size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -351,7 +369,7 @@ function AgencyCreate() {
                                                         </label>
                                                         <select
                                                             className='appearance-none border rounded w-full py-2 px-3  text-grey-darker'
-                                                            required
+                                                            
                                                             value={
                                                                 agency_cluster
                                                             }

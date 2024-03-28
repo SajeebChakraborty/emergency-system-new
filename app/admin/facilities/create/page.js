@@ -1,6 +1,7 @@
 "use client";
 
 import axiosClient from "@/app/axiosClient";
+import { set } from "mongoose";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
@@ -44,19 +45,12 @@ function UmraCreate() {
         fetchData();
     }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axiosClient.get("sub_area");
-                setSubAreaList("");
-                setSubAreaList(data.result);
-                console.log(data.result);
-            } catch (error) {
-                console.error("Error fetching agencies:", error);
-            }
-        };
+   
 
-        fetchData();
+    useEffect(() => {
+       
+
+        //fetchDataArea();
     }, []); // Empty dependency array means this effect runs only once, similar to componentDidMount
 
     useEffect(() => {
@@ -95,8 +89,20 @@ function UmraCreate() {
         setCountryId(value);
     };
 
-    const handleLocaltionAreaChange = (value) => {
+    const handleLocaltionAreaChange = async(value) => {
         setLocationArea(value);
+        setSubAreaList("");
+        
+        try {
+            //area-wise sub area
+            const { data } =  await axiosClient.get("sub_area/area-wise/"+value);
+            //setSubAreaList("");
+            setSubAreaList(data.result);
+            console.log(value);
+            console.log(data.result);
+        } catch (error) {
+            console.error("Error fetching agencies:", error);
+        }
     };
 
     const handleSubAreaChange = (value) => {
@@ -133,6 +139,19 @@ function UmraCreate() {
 
     const handlePremiseTypeIdChange = (value) => {
         setPremiseTypeId(value);
+    };
+
+    const fetchDataArea = async () => {
+        try {
+            //area-wise sub area
+            const { data } = await axiosClient.get("sub_area/area-wise/"+locationArea);
+            //setSubAreaList("");
+            setSubAreaList(data.result);
+            console.log(locationArea);
+            console.log(data.result);
+        } catch (error) {
+            console.error("Error fetching agencies:", error);
+        }
     };
 
     useEffect(() => {
@@ -392,7 +411,7 @@ function UmraCreate() {
                                                     }
 
                                                 >
-                                                    <option
+                                                     <option
                                                         value=''
                                                         disabled
                                                         hidden
@@ -641,15 +660,13 @@ function UmraCreate() {
                                                     >
                                                         Select CLA
                                                     </option>
-                                                    <option value='Approved'>
-                                                        Approved
+                                                    <option value='Yes'>
+                                                        Yes
                                                     </option>
-                                                    <option value='Partially Approved'>
-                                                        Partially Approved
+                                                    <option value='No'>
+                                                        No
                                                     </option>
-                                                    <option value='Denied'>
-                                                        Denied
-                                                    </option>
+                                                  
                                                 </select>
                                             </div>
 

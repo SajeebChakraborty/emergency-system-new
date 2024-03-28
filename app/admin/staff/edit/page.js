@@ -288,7 +288,25 @@ function StaffCreate() {
 
     const handleStaffPhotoChange = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Staff photo (jpg or png).');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Staff File size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -298,58 +316,104 @@ function StaffCreate() {
 
             // Read the file as a data URL (base64)
             reader.readAsDataURL(file);
-        } else {
-            setStaffPhoto("");
         }
     };
 
     const handlePassportOrginalAttachment = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
-            const reader2 = new FileReader();
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Passport Orginal image file (jpg or png).');
+                // Clear the file input
+                inputFile2.current.value = '';
+                return;
+            }
 
-            reader2.onloadend = () => {
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Passport Orginal image file size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile2.current.value = '';
+                return;
+            }
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
                 // Once the FileReader has read the file, set the base64 data
-                setPassportOrginalAttachment(reader2.result);
+                setPassportOrginalAttachment(reader.result);
             };
 
             // Read the file as a data URL (base64)
-            reader2.readAsDataURL(file);
-        } else {
-            setPassportOrginalAttachment("");
+            reader.readAsDataURL(file);
         }
     };
 
     const handlePassportDuplicateAttachment = (e) => {
         const file = e.target.files[0];
+        setErrorMessage("");
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
         if (file) {
-            const reader3 = new FileReader();
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Passport Duplicate file (jpg or png).');
+                // Clear the file input
+                inputFile3.current.value = null;
+                return;
+            }
 
-            reader3.onloadend = () => {
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Passport Duplicate file size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile3.current.value = '';
+                return;
+            }
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
                 // Once the FileReader has read the file, set the base64 data
-                setPassportDuplicateAttachment(reader3.result);
+                setPassportDuplicateAttachment(reader.result);
             };
 
             // Read the file as a data URL (base64)
-            reader3.readAsDataURL(file);
-        } else {
-            setPassportDuplicateAttachment("");
+            reader.readAsDataURL(file);
         }
     };
     const handleNationalIdAttachment = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
-            const reader4 = new FileReader();
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a National Id file (jpg or png).');
+                // Clear the file input
+                inputFile4.current.value = '';
+                return;
+            }
 
-            reader4.onloadend = () => {
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('National Id file size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile4.current.value = '';
+                return;
+            }
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
                 // Once the FileReader has read the file, set the base64 data
-                setNationalityAttachment(reader4.result);
+                setNationalityAttachment(reader.result);
             };
 
             // Read the file as a data URL (base64)
-            reader4.readAsDataURL(file);
-        } else {
-            setNationalityAttachment("");
+            reader.readAsDataURL(file);
         }
     };
 
@@ -565,6 +629,7 @@ function StaffCreate() {
                                                 >
                                                     Classification
                                                 </label>
+                                                
                                                 <select
                                                     className='appearance-none border rounded w-full py-2 px-3  text-grey-darker'
                                                     value={classificationId}
@@ -581,6 +646,9 @@ function StaffCreate() {
                                                     <option value='International Staff'>
                                                         International Staff
                                                     </option>
+                                                    <option value='Complimentary Staff'>
+                                                            Complimentary Staff
+                                                            </option>
                                                 </select>
                                             </div>
 
