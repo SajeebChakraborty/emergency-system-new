@@ -33,6 +33,11 @@ export async function PUT(request, content) {
         if (is_findData) {
             return NextResponse.json({ msg: 'Email must be unique', success: false }, { status: 409 });
         }
+          //if agency_cluster is not provided then set default value
+          if (!payload.agency_cluster) {
+            payload.agency_cluster = null;
+        }
+
 
         if(payload.agency_logo)
         {

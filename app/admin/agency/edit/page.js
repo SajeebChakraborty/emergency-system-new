@@ -368,7 +368,7 @@ function AgencyCreate() {
                         <select
                           className="appearance-none border rounded w-full py-2 px-3  text-grey-darker"
                           value={agency_cluster}
-                          required
+                
                           onChange={(e) => handleClusterChange(e.target.value)}
                         >
                           <option value="" disabled hidden>

@@ -187,7 +187,25 @@ function StaffCreate() {
 
     const handleStaffPhotoChange = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Staff photo (jpg or png).');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Staff File size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile.current.value = '';
+                return;
+            }
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -202,7 +220,25 @@ function StaffCreate() {
 
     const handlePassportOrginalAttachment = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Passport Orginal image file (jpg or png).');
+                // Clear the file input
+                inputFile2.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Passport Orginal image file size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile2.current.value = '';
+                return;
+            }
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -217,7 +253,25 @@ function StaffCreate() {
 
     const handlePassportDuplicateAttachment = (e) => {
         const file = e.target.files[0];
+        setErrorMessage("");
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
         if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a Passport Duplicate file (jpg or png).');
+                // Clear the file input
+                inputFile3.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('Passport Duplicate file size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile3.current.value = '';
+                return;
+            }
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -231,7 +285,25 @@ function StaffCreate() {
     };
     const handleNationalIdAttachment = (e) => {
         const file = e.target.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSizeMB = 1;
+        setErrorMessage("");
         if (file) {
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                setErrorMessage('Please select a National Id file (jpg or png).');
+                // Clear the file input
+                inputFile4.current.value = '';
+                return;
+            }
+
+            // Check file size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setErrorMessage('National Id file size exceeds 1 MB limit.');
+                // Clear the file input
+                inputFile4.current.value = '';
+                return;
+            }
             const reader = new FileReader();
 
             reader.onloadend = () => {
@@ -1178,7 +1250,7 @@ function StaffCreate() {
                                                         <input
                                                             type='file'
                                                             className='upload-field'
-                                                            ref={inputFile2}
+                                                            ref={inputFile3}
                                                             onChange={
                                                                 handlePassportDuplicateAttachment
                                                             }
