@@ -383,7 +383,7 @@ const PDFFile = ({mission,missionLocation,missionVehicle}) => {
                     </View>
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>ID Number</Text>
-                        <Text style={styles.text}>{item.driver.driver_id}</Text>
+                        <Text style={styles.text}>{item.driver.employee_id}</Text>
                     </View>
                     <View style={styles.sectionCol}>
                         <Text style={styles.label}>Phone Number:</Text>

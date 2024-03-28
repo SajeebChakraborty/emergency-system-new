@@ -140,7 +140,6 @@ function MissionVIew() {
             try {
                 const {data} = await axiosClient.get("acu_status");
                 setAcuStatusDataList(data.result);
-                console.log(data.result);
             } catch (error) {
                 console.error("Error fetching agencies:", error);
             }
