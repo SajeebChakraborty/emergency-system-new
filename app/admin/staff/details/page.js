@@ -1002,7 +1002,7 @@ useEffect(() => {
                                     {staffPhoto && (
                                         <img
                                             className="w-8 h-8 rounded-full object-cover"
-                                            src={`${api_base_url}/${staffPhoto}`}
+                                            src={`${staffPhoto}`}
                                             
                                         />
                                     )}
@@ -1020,7 +1020,7 @@ useEffect(() => {
                                     {passportOrginalAttachment && (
                                         <img
                                             className="w-8 h-8 rounded-full object-cover"
-                                            src={`${api_base_url}/${passportOrginalAttachment}`}
+                                            src={`${passportOrginalAttachment}`}
                                             
                                         />
                                     )}
@@ -1039,7 +1039,7 @@ useEffect(() => {
                               {passportDuplicateAttachment && (
                                         <img
                                             className="w-8 h-8 rounded-full object-cover"
-                                            src={`${api_base_url}/${passportOrginalAttachment}`}
+                                            src={`${passportOrginalAttachment}`}
                                             
                                         />
                                     )}
@@ -1057,7 +1057,7 @@ useEffect(() => {
                                     {nationaltyAttachment && (
                                         <img
                                             className="w-8 h-8 rounded-full object-cover"
-                                            src={`${api_base_url}/${nationaltyAttachment}`}
+                                            src={`${nationaltyAttachment}`}
                                             
                                         />
                                     )}
